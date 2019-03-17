@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class TurtleSoup {
 	
 	private static double currentHeading;
+	private static double CIRCLE_DEGRES = 360;
     
     /**
      * Draw a square.
@@ -18,21 +19,14 @@ public class TurtleSoup {
      */
     public static void drawSquare(Turtle turtle, int sideLength) {
         //throw new RuntimeException("implement me!");
-        turtle.forward(sideLength);
-        turtle.turn(90.0);
-        turtle.color(PenColor.RED);
-        
-        turtle.forward(sideLength);
-        turtle.turn(90.0);
-        turtle.color(PenColor.CYAN);
-        
-        turtle.forward(sideLength);
-        turtle.turn(90.0);
-        turtle.color(PenColor.GREEN);
-        
-        turtle.forward(sideLength);
-        turtle.turn(90.0);
-        turtle.color(PenColor.ORANGE);
+    	for (int i = 0; i < 4; i++) {
+    		turtle.forward(sideLength);
+        	turtle.turn(90);
+        	if(i % 2 == 0)
+        		turtle.color(PenColor.RED);
+        	else
+        		turtle.color(PenColor.GREEN);
+		}
     }
 
     /**
@@ -46,8 +40,8 @@ public class TurtleSoup {
      */
     public static double calculateRegularPolygonAngle(int sides) {
         //throw new RuntimeException("implement me!");
-    	double sumAngle = (sides - 2) * 180;
-    	return sumAngle;
+    	double angle = CIRCLE_DEGRES / sides;
+    	return angle;
     }
 
     /**
@@ -77,36 +71,20 @@ public class TurtleSoup {
      */
     public static void drawRegularPolygon(Turtle turtle, int sides, int sideLength) {
         //throw new RuntimeException("implement me!");
-    	int sumAngle = (int) calculateRegularPolygonAngle(sides);
-    	int oneAngleSide = sumAngle / sides;
-    	int turnAngle = oneAngleSide / 2;
+    	double angle = calculateRegularPolygonAngle(sides);
     	
-    	System.out.println("Somme des angles : " + sumAngle);
-    	System.out.println("Angle pour un coté : " + oneAngleSide);
+    	System.out.println("Sides : " + sides);
+    	System.out.println("Angle : " + angle);
     	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.RED);
-    	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.BLACK);
-    	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.CYAN);
-    	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.ORANGE);
-    	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.YELLOW);
-    	
-    	turtle.forward(sideLength);
-    	turtle.turn(turnAngle);
-    	turtle.color(PenColor.RED);
+    	for (int i = 0; i < sides; i++) {
+    		turtle.forward(sideLength);
+        	turtle.turn(angle);
+        	if(i % 2 == 0)
+        		turtle.color(PenColor.ORANGE);
+        	else
+        		turtle.color(PenColor.CYAN);
+		}
+
     }
 
     /**
@@ -176,50 +154,14 @@ public class TurtleSoup {
      */
     public static void drawPersonalArt(Turtle turtle) {
         //throw new RuntimeException("implement me!");
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.GREEN);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.BLUE);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.CYAN);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.GREEN);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.RED);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.BLACK);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.ORANGE);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.RED);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.GRAY);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.ORANGE);
-    	
-    	turtle.forward(100);
-    	turtle.turn(65.35);
-    	turtle.color(PenColor.CYAN);
+    	for (int i = 0; i < 11; i++) {
+    		turtle.forward(100);
+        	turtle.turn(65.35);
+        	if(i % 2 == 0)
+        		turtle.color(PenColor.CYAN);
+        	else
+        		turtle.color(PenColor.MAGENTA);
+		}
     }
 
     /**
@@ -236,7 +178,7 @@ public class TurtleSoup {
         drawRegularPolygon(turtle, 6, 60);
         drawPersonalArt(turtle);
         
-        calculateHeadingToPoint(0, 20, 20, 50, 50);
+        calculateHeadingToPoint(0.0, 0, 0, 0, 1);
         
         /**
          * @author fily
