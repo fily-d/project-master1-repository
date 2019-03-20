@@ -40,6 +40,9 @@ public class TurtleSoup {
      */
     public static double calculateRegularPolygonAngle(int sides) {
         //throw new RuntimeException("implement me!");
+    	if (sides == 0) {
+    	    throw new IllegalArgumentException("Argument 'divisor' is 0");
+    	}
     	double angle = CIRCLE_DEGRES / sides;
     	return angle;
     }
@@ -175,7 +178,7 @@ public class TurtleSoup {
         DrawableTurtle turtle = new DrawableTurtle();
 
         drawSquare(turtle, 60);
-        drawRegularPolygon(turtle, 6, 60);
+        drawRegularPolygon(turtle, 9, 60);
         drawPersonalArt(turtle);
         
         calculateHeadingToPoint(0.0, 0, 0, 0, 1);
@@ -188,8 +191,10 @@ public class TurtleSoup {
         xpoints.add(0);
         xpoints.add(1);
         xpoints.add(1);
+        xpoints.add(2);
         ypoints.add(0);
         ypoints.add(1);
+        ypoints.add(2);
         ypoints.add(2);
 
         List<Integer> results = calculateHeadings(xpoints, ypoints);
